@@ -1,39 +1,16 @@
----
-title: "key_driver_function"
-output: html_document
----
-
-```{r setup, include=FALSE}
+## ----setup, include=FALSE-----------------------------------------------
 knitr::opts_chunk$set(echo = TRUE)
-```
-Step: Library packages and load data
-```{r}
+
+
+## -----------------------------------------------------------------------
 library(pacman)
-library(renv)
-library(dplyr)
-library(shiny)
-library(shinydashboard)
-library(shinydashboardPlus)
-library(tidyverse)
-library(tidymodels)
-library(glue)
-library(plotly)
-library(devtools)
-library(shinyWidgets)
-library(fontawesome)
-library(formattable)
-library(janitor)
-library(tsibble)
-library(lubridate)
-library(ggrepel)
-library(vip)
-library(rwa)
+pacman::p_load(renv, dplyr, shiny, shinydashboard, shinydashboardPlus, tidyverse, glue, plotly, devtools, shinyWidgets, fontawesome, formattable, janitor, tsibble, DT, readr, lubridate, tidymodels, ggrepel, vip, rwa, glue)
 
 source(knitr::purl(glue("data_generation_a360.Rmd")))
 nps_data
-```
-Step: Setup the function
-```{r}
+
+
+## -----------------------------------------------------------------------
 key_driver_function = function(data, outcome){
   
 data_out = data %>%
@@ -97,16 +74,16 @@ return(key_drivers_data)
 }
 
 
-```
-Step: Test out the function
-```{r}
+
+
+## -----------------------------------------------------------------------
 nps_data_driver = nps_data %>%
   select(-c(year_quarter, account_names))
 
 key_driver_function(data = nps_data_driver, outcome = "nps")
-```
-Step: Graph function for key drivers
-```{r}
+
+
+## -----------------------------------------------------------------------
 
 viz_key_driver_function = function(data){
 
@@ -148,23 +125,11 @@ kd <- ggplot(key_drivers_data,aes(importance, positive, label = variable))+
 
 return(kd)
 }
-```
-Step: Use both functions
-```{r}
+
+
+## -----------------------------------------------------------------------
 key_drivers_data = key_driver_function(data = nps_data_driver, outcome = "nps")
 
 viz_key_driver_function(key_drivers_data)
 
-```
 
-
-
-
-  
-    
-
-    
- 
-    
-
-    

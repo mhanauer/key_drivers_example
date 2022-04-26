@@ -1,4 +1,3 @@
-library(pacman)
 library(renv)
 library(dplyr)
 library(shiny)
@@ -14,8 +13,6 @@ library(fontawesome)
 library(formattable)
 library(janitor)
 library(tsibble)
-library(DT)
-library(readr)
 library(lubridate)
 library(ggrepel)
 
